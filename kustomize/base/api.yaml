@@ -1,0 +1,22 @@
+appVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  namespace: test
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+  matchlabels:
+    app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: zelawat27/test_api:latest
+          ports:
+            - containerPort: 8090
