@@ -1,0 +1,12 @@
+patches:
+  - path: api.yaml
+  - path: ingress.yaml
+
+namespace: local
+
+namePrefix: z-
+nameSuffix: -local
+
+resources:
+  - namespace.yaml
+  - ../../base

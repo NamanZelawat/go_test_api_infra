@@ -1,13 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: ingress-deployment
+  labels:
+    app: ingress
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: api
+      app: ingress
   template:
     metadata:
       labels:
-        app: api
+        app: ingress

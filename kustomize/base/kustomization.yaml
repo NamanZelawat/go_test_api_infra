@@ -1,0 +1,6 @@
+commonLabels:
+  service: test
+
+resources:
+  - api.yaml
+  - ingress.yaml
