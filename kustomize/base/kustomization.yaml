@@ -4,3 +4,6 @@ commonLabels:
 resources:
   - api.yaml
   - ingress.yaml
+  - message.yaml
+  - mysql.yaml
+  - minio.yaml

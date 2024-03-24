@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: api
   labels:
     app: api
 spec:
@@ -17,6 +17,9 @@ spec:
       containers:
         - name: api
           image: zelawat27/test_api:latest
+          env:
+            - name: INGRESS_URL
+              value: ingress:8080
           ports:
             - containerPort: 8090
           resources:

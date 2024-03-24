@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: bitnami/minio:latest
+          env:
+            - name: MINIO_ROOT_USER
+              value: root
+            - name: MINIO_ROOT_PASSWORD
+              value: password
+            - name: MINIO_DEFAULT_BUCKETS
+              value: image
+          ports:
+            - containerPort: 9000
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 300m
+            limits:
+              memory: 512Mi
+              cpu: 300m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+spec:
+  selector:
+    app: minio # Selecting pods with label "app=myapp"
+  ports:
+    - protocol: TCP
+      port: 9000 # Port on the Service
+      targetPort: 9000 # Port on the Pod (deployment)

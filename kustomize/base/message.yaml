@@ -1,29 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ingress
+  name: message
   labels:
-    app: ingress
+    app: message
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ingress
+      app: message
   template:
     metadata:
       labels:
-        app: ingress
+        app: message
     spec:
       containers:
         - name: ingress
-          image: zelawat27/test_ingress:latest
-          env:
-            - name: MINIO_URL
-              value: minio:9000
-            - name: MESSAGE_URL
-              value: message:4222
+          image: nats-streaming:linux
           ports:
-            - containerPort: 8080
+            - containerPort: 4222
           resources:
             requests:
               memory: 128Mi
@@ -36,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingress
+  name: message
 spec:
   selector:
-    app: ingress # Selecting pods with label "app=myapp"
+    app: message # Selecting pods with label "app=myapp"
   ports:
     - protocol: TCP
-      port: 8080 # Port on the Service
-      targetPort: 8080 # Port on the Pod (deployment)
+      port: 4222 # Port on the Service
+      targetPort: 4222 # Port on the Pod (deployment)

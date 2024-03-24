@@ -4,8 +4,8 @@ patches:
 
 namespace: local
 
-namePrefix: z-
-nameSuffix: -local
+# namePrefix: z-
+# nameSuffix: -local
 
 resources:
   - namespace.yaml
